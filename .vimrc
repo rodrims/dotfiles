@@ -97,16 +97,19 @@ if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
 
+" I added these in myself.
 color slate
-set number
 set nobackup
 set nowritebackup
+set relativenumber
 set noundofile
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set textwidth=80
 
+" I forget where this function came from and I don't know what it does but I
+" think that removing it breaks vim.
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -130,3 +133,20 @@ function MyDiff()
     let cmd = $VIMRUNTIME . '\diff"'
   endif
 endfunction
+
+" This I didn't write, but I understand.
+function! NumberToggle()
+	if (&relativenumber == 1)
+		set norelativenumber
+	else
+		set relativenumber
+	endif
+endfunc
+
+noremap <C-n> :call NumberToggle()<cr>
+
+:au FocusLost * :set norelativenumber
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
