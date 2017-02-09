@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -56,11 +56,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
+# temporary prompt while I figure stuff out
+PS1='┌[\t][\w]\n└[\u]\$ '
+
+#if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\][\u]\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]\$ '
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}[\u][\w]\$ '
+#fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -88,9 +91,20 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -AlF'
 alias la='ls -Al'
 alias l='ls -CF'
+
+#some of my own functions
+# TODO sed only modifies if it finds the text, make it so if it doesn't exist in the file to also add it
+# TODO make it so if it's set to something else than light or dark, to change it to light or dark
+day () {
+	sed -i 's/set background=dark/set background=light/g' ~/.vimrc
+}
+
+night () {
+	sed -i 's/set background=light/set background=dark/g' ~/.vimrc
+}
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
