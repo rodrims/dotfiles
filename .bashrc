@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+#message# ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -56,14 +56,10 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# temporary prompt while I figure stuff out
-PS1='┌[\t][\w]\n└[\u]\$ '
+# TODO temporary prompt while I figure stuff out
+# of note is that this makes the color prompt checks above irrelevant
+PS1='[\u][\w]\$ '
 
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\][\u]\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}[\u][\w]\$ '
-#fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -88,14 +84,14 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -AlF'
-alias la='ls -Al'
-alias l='ls -CF'
+# -------------MY_STUFF
+# Powerline 
+#if [ -e /usr/share/powerline/bindings/bash/powerline.sh ]; then
+#	. /usr/share/powerline/bindings/bash/powerline.sh
+#fi
 
-#some of my own functions
 # TODO sed only modifies if it finds the text, make it so if it doesn't exist in the file to also add it
 # TODO make it so if it's set to something else than light or dark, to change it to light or dark
 day () {
@@ -105,16 +101,14 @@ day () {
 night () {
 	sed -i 's/set background=light/set background=dark/g' ~/.vimrc
 }
+# -------------MY_STUFF
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi

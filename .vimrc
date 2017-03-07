@@ -1,3 +1,4 @@
+set autoindent
 set background=dark
 set nobackup
 set noundofile
@@ -7,6 +8,8 @@ set relativenumber
 set shiftwidth=4
 set smartindent
 set softtabstop=4
+set splitbelow " new windows are split bottomwise
+set splitright " new windows are split rightwise
 set tabstop=4
 
 colorscheme solarized
@@ -21,6 +24,7 @@ function! NumberToggle()
 endfunc
 
 noremap <C-n> :call NumberToggle()<cr>
-
-:au FocusLost * :set norelativenumber
-:au FocusGained * :set relativenumber
+noremap <C-J> <C-W><C-J>
+noremap <C-K> <C-W><C-K>
+noremap <C-L> <C-W><C-L>
+noremap <C-H> <C-W><C-H>
