@@ -58,7 +58,7 @@ fi
 
 # TODO temporary prompt while I figure stuff out
 # of note is that this makes the color prompt checks above irrelevant
-PS1='[\u][\w]\$ '
+PS1='[\u]\[\033[0;34m\][\w]\[\033[00m\]\$ '
 
 unset color_prompt force_color_prompt
 
@@ -87,6 +87,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # -------------MY_STUFF
+# TODO CTRL-L creates a large blank space when scrolling up if Powerline is enabled
 # Powerline 
 #if [ -e /usr/share/powerline/bindings/bash/powerline.sh ]; then
 #	. /usr/share/powerline/bindings/bash/powerline.sh
@@ -109,8 +110,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ./.bash_aliases ]; then
+    . ./.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
