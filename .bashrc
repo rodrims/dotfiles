@@ -96,19 +96,27 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # TODO sed only modifies if it finds the text, make it so if it doesn't exist in the file to also add it
 # TODO make it so if it's set to something else than light or dark, to change it to light or dark
 day () {
-	sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
+	if [ -f ~/.vimrc ]; then
+		sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
+	fi
 
-	sed -e 's/ColorCursor=#0f0f49499999/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorForeground=#838394949696/ColorForeground=#00002B2B3636/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorBackground=#00002b2b3636/ColorBackground=#fdfdf6f6e3e3/g' -i ~/.config/xfce4/terminal/terminalrc
+	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
+		sed -e 's/ColorCursor=#0f0f49499999/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
+		sed -e 's/ColorForeground=#838394949696/ColorForeground=#00002B2B3636/g' -i ~/.config/xfce4/terminal/terminalrc
+		sed -e 's/ColorBackground=#00002b2b3636/ColorBackground=#fdfdf6f6e3e3/g' -i ~/.config/xfce4/terminal/terminalrc
+	fi
 }
 
 night () {
-	sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
+	if [ -f ~/.vimrc ]; then
+		sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
+	fi
 
-	sed -e 's/ColorCursor=#9393a1a1a1a1/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorForeground=#00002B2B3636/ColorForeground=#838394949696/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorBackground=#fdfdf6f6e3e3/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
+	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
+		sed -e 's/ColorCursor=#9393a1a1a1a1/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc
+		sed -e 's/ColorForeground=#00002B2B3636/ColorForeground=#838394949696/g' -i ~/.config/xfce4/terminal/terminalrc
+		sed -e 's/ColorBackground=#fdfdf6f6e3e3/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
+	fi
 }
 # -------------MY_STUFF
 
