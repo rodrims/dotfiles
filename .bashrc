@@ -1,4 +1,4 @@
-#message# ~/.bashrc: executed by bash(1) for non-login shells.
+
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -96,17 +96,25 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # TODO sed only modifies if it finds the text, make it so if it doesn't exist in the file to also add it
 # TODO make it so if it's set to something else than light or dark, to change it to light or dark
 day () {
-	sed -i 's/set background=dark/set background=light/g' ~/.vimrc
+	sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
+
+	sed -e 's/ColorCursor=#0f0f49499999/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
+	sed -e 's/ColorForeground=#838394949696/ColorForeground=#00002B2B3636/g' -i ~/.config/xfce4/terminal/terminalrc
+	sed -e 's/ColorBackground=#00002b2b3636/ColorBackground=#fdfdf6f6e3e3/g' -i ~/.config/xfce4/terminal/terminalrc
 }
 
 night () {
-	sed -i 's/set background=light/set background=dark/g' ~/.vimrc
+	sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
+
+	sed -e 's/ColorCursor=#9393a1a1a1a1/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc
+	sed -e 's/ColorForeground=#00002B2B3636/ColorForeground=#838394949696/g' -i ~/.config/xfce4/terminal/terminalrc
+	sed -e 's/ColorBackground=#fdfdf6f6e3e3/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
 }
 # -------------MY_STUFF
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=low -e "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
