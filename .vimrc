@@ -12,8 +12,13 @@ set splitbelow " new windows are split bottomwise
 set splitright " new windows are split rightwise
 set tabstop=4
 
-colorscheme solarized
 syntax enable
+
+" solarized colorscheme
+let g:solarized_termcolors=16
+set t_Co=16
+colorscheme solarized
+
 
 function! NumberToggle()
 	if (&relativenumber == 1)
