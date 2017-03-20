@@ -56,9 +56,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# TODO temporary prompt while I figure stuff out
-# of note is that this makes the color prompt checks above irrelevant
-PS1='[\u]\[\033[0;34m\][\w]\[\033[00m\]\$ '
+# TODO of note is that this makes the color prompt checks above irrelevant ?
+PS1='\[\033[0;34m\][\w]\[\033[00m\]\$ '
 
 unset color_prompt force_color_prompt
 
