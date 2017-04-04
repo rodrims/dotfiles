@@ -1,5 +1,6 @@
 set autoindent
 set background=dark
+set hlsearch
 set nobackup
 set noundofile
 set nowritebackup
@@ -19,6 +20,13 @@ let g:solarized_termcolors=16
 set t_Co=16
 colorscheme solarized
 
+function! HighlightToggle()
+	if (&hlsearch == 1)
+		set nohlsearch
+	else
+		set hlsearch
+	endif
+endfunc
 
 function! NumberToggle()
 	if (&relativenumber == 1)
@@ -28,6 +36,8 @@ function! NumberToggle()
 	endif
 endfunc
 
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+noremap <C-y> :call HighlightToggle()<cr>
 noremap <C-n> :call NumberToggle()<cr>
 noremap <C-J> <C-W><C-J>
 noremap <C-K> <C-W><C-K>
