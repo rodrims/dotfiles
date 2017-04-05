@@ -1,0 +1,7 @@
+[user]
+	email = rodri.m.sanchez@gmail.com
+	name = Rodrigo Mejia
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout 7200
