@@ -56,8 +56,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# enable posh-git prompt if available
 # TODO of note is that this makes the color prompt checks above irrelevant ?
-PS1='\[\033[0;34m\][\w]\[\033[00m\]\$ '
+if [ -f ~/notmine/posh-git-sh/git-prompt.sh ]; then
+	source ~/notmine/posh-git-sh/git-prompt.sh
+	PROMPT_COMMAND='__posh_git_ps1 "\[\033[0;34m\][\w]\[\033[00m\]" "\$ ";'$PROMPT_COMMAND
+else
+	PS1='\[\033[0;34m\][\w]\[\033[00m\]\$ '
+fi
 
 unset color_prompt force_color_prompt
 
@@ -129,6 +135,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# enable vi mode in bash
 set -o vi
 
 # enable programmable completion features (you don't need to enable
