@@ -100,7 +100,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # TODO make it so if it's set to something else than light or dark, to change it to light or dark
 day () {
 	if [ -f ~/.vimrc ]; then
-		sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
+		sed -e 's/set background=dark/set background=light/g' -i ~/dotfiles/vimrc
 	fi
 
 	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
@@ -112,7 +112,7 @@ day () {
 
 night () {
 	if [ -f ~/.vimrc ]; then
-		sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
+		sed -e 's/set background=light/set background=dark/g' -i ~/dotfiles/vimrc
 	fi
 
 	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
