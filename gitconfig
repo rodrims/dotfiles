@@ -5,3 +5,5 @@
 	default = simple
 [credential]
 	helper = cache --timeout=7200
+[core]
+	excludesfile = /home/rodrigo/.gitignore_global
