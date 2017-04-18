@@ -1,17 +1,21 @@
-set autoindent
 set background=dark
+set cindent
+set cinkeys-=0#
+set copyindent
 set hlsearch
+set indentkeys-=0#
 set nobackup
 set noundofile
 set nowritebackup
 set number
 set relativenumber
 set shiftwidth=4
-set smartindent
 set softtabstop=4
 set splitbelow " new windows are split bottomwise
 set splitright " new windows are split rightwise
 set tabstop=4
+set timeoutlen=3000
+set ttimeoutlen=100
 
 syntax enable
 
@@ -36,7 +40,9 @@ function! NumberToggle()
 	endif
 endfunc
 
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+inoremap jk <Esc>
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <O> <k><C-o>
 noremap <C-y> :call HighlightToggle()<cr>
 noremap <C-n> :call NumberToggle()<cr>
 noremap <C-J> <C-W><C-J>
