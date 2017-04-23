@@ -101,17 +101,17 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 day () {
 	sed -e 's/set background=dark/set background=light/g' -i ~/dotfiles/vimrc
 
-sed -e 's/ColorCursor=#0f0f49499999/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
-sed -e 's/ColorForeground=#838394949696/ColorForeground=#00002B2B3636/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorBackground=#00002b2b3636/ColorBackground=#fdfdf6f6e3e3/g' -i ~/.config/xfce4/terminal/terminalrc
+	sed -e 's/ColorCursor=#0f0f49499999/ColorCursor=#9393a1a1a1a1/g' -i ~/dotfiles/terminalrc
+	sed -e 's/ColorForeground=#838394949696/ColorForeground=#00002B2B3636/g' -i ~/dotfiles/terminalrc
+	sed -e 's/ColorBackground=#00002b2b3636/ColorBackground=#fdfdf6f6e3e3/g' -i ~/dotfiles/terminalrc
 }
 
 night () {
 	sed -e 's/set background=light/set background=dark/g' -i ~/dotfiles/vimrc
 
-	sed -e 's/ColorCursor=#9393a1a1a1a1/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorForeground=#00002B2B3636/ColorForeground=#838394949696/g' -i ~/.config/xfce4/terminal/terminalrc
-	sed -e 's/ColorBackground=#fdfdf6f6e3e3/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
+	sed -e 's/ColorCursor=#9393a1a1a1a1/ColorCursor=#0f0f49499999/g' -i ~/dotfiles/terminalrc
+	sed -e 's/ColorForeground=#00002B2B3636/ColorForeground=#838394949696/g' -i ~/dotfiles/terminalrc
+	sed -e 's/ColorBackground=#fdfdf6f6e3e3/ColorBackground=#00002b2b3636/g' -i ~/dotfiles/terminalrc
 }
 # -------------MY_STUFF
 
