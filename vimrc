@@ -19,6 +19,7 @@ set splitright
 set tabstop=4
 set timeoutlen=3000
 set ttimeoutlen=100
+set clipboard=unnamedplus
 
 syntax enable
 
