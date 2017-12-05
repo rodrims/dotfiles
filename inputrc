@@ -1,13 +1,19 @@
+set completion-ignore-case on
+set completion-prefix-display-length 2
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
 set editing-mode vi
 
-$if mode=vi
-set keymap vi-command
-set show-mode-in-prompt on
-# these are for vi command mode(s)
 Control-l: clear-screen
 
+$if mode=vi
+set show-mode-in-prompt on
+
 set keymap vi-insert
-# these are for vi-insert mode
+# all following maps are for insert mode only
 Control-l: clear-screen
+Control-j: menu-complete
+Control-k: menu-complete-backward
 "jk": vi-movement-mode
+
 $endif

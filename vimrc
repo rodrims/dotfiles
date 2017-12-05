@@ -1,27 +1,27 @@
 set background=dark
 set cindent
 set cinkeys-=0#
-set hlsearch
-set incsearch
+set hlsearch " hightlight search results when using /
+set incsearch " highlight search results as you type
 set indentkeys-=0#
-set listchars=tab:»\ ,eol:¬,nbsp:·,trail:·
-set nobackup
+set listchars=tab:»\ ,eol:¬,nbsp:·,trail:· " chars to represent invisibles
+set nobackup " stops creation of vim ~ backup files
 set nolist
 set noundofile
 set nowritebackup
-set number
-set relativenumber
+set number " show line numbers
+set relativenumber "show relative line numbers (in combo with above line shows current line number and relative on other lines)
 set shiftwidth=4
-set showbreak=+++
+set showbreak=+++ " character to start a line that is wrapped
 set softtabstop=4
-set splitbelow
-set splitright
+set splitbelow " sets default behaviour of :new
+set splitright " sets default behaviour of :vnew
 set tabstop=4
 set timeoutlen=3000
 set ttimeoutlen=100
 set clipboard=unnamedplus
 
-syntax enable
+syntax enable " sytax highlighting
 
 " solarized colorscheme fixes
 let g:solarized_termcolors=16
