@@ -1,6 +1,7 @@
 set background=dark
 set cindent
 set cinkeys-=0#
+set cursorline
 set hlsearch " hightlight search results when using /
 set incsearch " highlight search results as you type
 set indentkeys-=0#
