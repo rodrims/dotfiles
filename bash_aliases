@@ -1,3 +1,4 @@
+alias cls='clear'
 alias dirs='dirs -p -v'
 alias df='df -h --total'
 alias fknbt='sudo modprobe -r btusb; sudo modprobe btusb'

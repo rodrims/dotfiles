@@ -13,7 +13,7 @@ set nowritebackup
 set number " show line numbers
 set relativenumber "show relative line numbers (in combo with above line shows current line number and relative on other lines)
 set shiftwidth=4
-set showbreak=+++ " character to start a line that is wrapped
+set showbreak=\ \ \  " character to start a line that is wrapped ───
 set softtabstop=4
 set splitbelow " sets default behaviour of :new
 set splitright " sets default behaviour of :vnew
