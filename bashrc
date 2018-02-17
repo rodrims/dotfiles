@@ -115,6 +115,10 @@ night () {
 		sed -e 's/ColorBackground=#.*$/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
 	fi
 }
+
+where () {
+	grep -n $1 ./*.*
+}
 # -------------MY_STUFF
 
 # Add an "alert" alias for long running commands.  Use like so:
