@@ -21,7 +21,7 @@ set splitright " sets default behaviour of :vnew
 set tabstop=8
 set timeoutlen=3000
 set ttimeoutlen=100
-set clipboard=unnamedplus
+set clipboard=unnamedplus " use system clipboard as default register
 
 syntax enable " sytax highlighting
 
@@ -29,6 +29,8 @@ syntax enable " sytax highlighting
 let g:solarized_termcolors=16
 set t_Co=16
 colorscheme solarized
+hi Normal ctermbg=none
+hi NonText ctermbg=none
 
 function! HighlightToggle()
 	if (&hlsearch == 1)
@@ -57,7 +59,6 @@ endfunc
 inoremap jk <Esc>
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 noremap <C-Y> :call HighlightToggle()<cr>
-noremap <^Y> :call HighlightToggle()<cr>
 noremap <C-\> :call ListToggle()<cr>
 noremap <C-N> :call NumberToggle()<cr>
 noremap <C-J> <C-W><C-J>
