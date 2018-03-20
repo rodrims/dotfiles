@@ -57,6 +57,7 @@ function! NumberToggle()
 endfunc
 
 inoremap jk <Esc>
+inoremap <C-\> <Esc>:call ListToggle()<cr>i
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 noremap <C-Y> :call HighlightToggle()<cr>
 noremap <C-\> :call ListToggle()<cr>

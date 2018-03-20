@@ -1,4 +1,5 @@
 alias cls='clear'
+alias colors='xfce4-terminal --color-table'
 alias df='df -h --total'
 alias dirs='dirs -p -v'
 alias fknbt='sudo modprobe -r btusb; sudo modprobe btusb'
