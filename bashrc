@@ -1,4 +1,3 @@
-
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -16,8 +15,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -97,7 +96,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #fi
 
 day () {
-	sed -e 's/set background=dark/set background=light/g' -i ~/dotfiles/vimrc
+	sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
 
 	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
 		sed -e 's/ColorCursor=#.*$/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
@@ -107,7 +106,7 @@ day () {
 }
 
 night () {
-	sed -e 's/set background=light/set background=dark/g' -i ~/dotfiles/vimrc
+	sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
 
 	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
 		sed -e 's/ColorCursor=#.*$/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc

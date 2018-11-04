@@ -5,6 +5,7 @@ set editing-mode vi
 set match-hidden-files on
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
+set show-mode-in-prompt on
 set visible-stats on
 
 Control-l: clear-screen
