@@ -34,6 +34,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+ TODO unset as this seems to not have an effect
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -55,18 +56,31 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# enable posh-git prompt if available
-# TODO of note is that this makes the color prompt checks above irrelevant ?
-if [ -f ~/notmine/posh-git-sh/git-prompt.sh ]; then
-	source ~/notmine/posh-git-sh/git-prompt.sh
-	PROMPT_COMMAND='__posh_git_ps1 "\[\033[0;34m\][\w]\[\033[00m\]" "\$ ";'$PROMPT_COMMAND
-else
-	PS1='\[\033[0;34m\][\w]\[\033[00m\]\$ '
-fi
+prompt_command () {
+    local prompt="\[\033[0;34m\][\w]\[\033[00m\]\n\$ "
+    local virtualenv=
+
+    if [[ -n $VIRTUAL_ENV ]]; then
+        virtualenv="($(basename $VIRTUAL_ENV))"
+    fi
+
+    # enable posh-git prompt if available
+    # TODO of note is that this makes the color prompt checks above irrelevant ?
+    if [ -f ~/notmine/posh-git-sh/git-prompt.sh ]; then
+        source ~/notmine/posh-git-sh/git-prompt.sh
+        __posh_git_ps1 "$virtualenv" "$prompt"
+    else
+        PS1=$prompt
+    fi
+}
+
+
+PROMPT_COMMAND='prompt_command'
 
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
+# TODO this is cancelled out by the prompt_command above
 case "$TERM" in
 xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
@@ -126,7 +140,7 @@ alias alert='notify-send --urgency=low -e "$([ $? = 0 ] && echo terminal || echo
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
 fi
 
 # Workaround for 256 colors in xfce4-terminal, this fixes colors in tmux
