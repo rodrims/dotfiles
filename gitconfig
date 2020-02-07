@@ -4,6 +4,6 @@
 [push]
 	default = simple
 [credential]
-	helper = cache --timeout=7200
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 [core]
 	excludesfile = /home/rodrigo/.gitignore_global
