@@ -24,7 +24,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -34,28 +34,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
- TODO unset as this seems to not have an effect
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
+# command is executed before 
 prompt_command () {
     local prompt="\[\033[0;34m\][\w]\[\033[00m\]\n\$ "
     local virtualenv=
@@ -65,28 +44,27 @@ prompt_command () {
     fi
 
     # enable posh-git prompt if available
-    # TODO of note is that this makes the color prompt checks above irrelevant ?
     if [ -f ~/notmine/posh-git-sh/git-prompt.sh ]; then
         source ~/notmine/posh-git-sh/git-prompt.sh
+        # __post_git_ps1 is a function that sets the PS1 variable
         __posh_git_ps1 "$virtualenv" "$prompt"
     else
         PS1=$prompt
     fi
 }
 
-
+# PROMPT_COMMAND is a command that runs before the prompt displays
 PROMPT_COMMAND='prompt_command'
-
-unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 # TODO this is cancelled out by the prompt_command above
+# however, keeping this as it might affect TTYs
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -102,37 +80,29 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# -------------MY_STUFF
-# TODO CTRL-L creates a large blank space when scrolling up if Powerline is enabled
-# Powerline 
-#if [ -e /usr/share/powerline/bindings/bash/powerline.sh ]; then
-#	. /usr/share/powerline/bindings/bash/powerline.sh
-#fi
-
 day () {
-	sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
+    sed -e 's/set background=dark/set background=light/g' -i ~/.vimrc
 
-	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
-		sed -e 's/ColorCursor=#.*$/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
-		sed -e 's/ColorForeground=#.*$/ColorForeground=#00002B2B3636/g' -i ~/.config/xfce4/terminal/terminalrc
-		sed -e 's/ColorBackground=#.*$/ColorBackground=#fdfdf6f6e3e3/g' -i ~/.config/xfce4/terminal/terminalrc
-	fi
+    if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
+        sed -e 's/ColorCursor=#.*$/ColorCursor=#9393a1a1a1a1/g' -i ~/.config/xfce4/terminal/terminalrc
+        sed -e 's/ColorForeground=#.*$/ColorForeground=#00002B2B3636/g' -i ~/.config/xfce4/terminal/terminalrc
+        sed -e 's/ColorBackground=#.*$/ColorBackground=#fdfdf6f6e3e3/g' -i ~/.config/xfce4/terminal/terminalrc
+    fi
 }
 
 night () {
-	sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
+    sed -e 's/set background=light/set background=dark/g' -i ~/.vimrc
 
-	if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
-		sed -e 's/ColorCursor=#.*$/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc
-		sed -e 's/ColorForeground=#.*$/ColorForeground=#838394949696/g' -i ~/.config/xfce4/terminal/terminalrc
-		sed -e 's/ColorBackground=#.*$/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
-	fi
+    if [ -f ~/.config/xfce4/terminal/terminalrc ]; then
+        sed -e 's/ColorCursor=#.*$/ColorCursor=#0f0f49499999/g' -i ~/.config/xfce4/terminal/terminalrc
+        sed -e 's/ColorForeground=#.*$/ColorForeground=#838394949696/g' -i ~/.config/xfce4/terminal/terminalrc
+        sed -e 's/ColorBackground=#.*$/ColorBackground=#00002b2b3636/g' -i ~/.config/xfce4/terminal/terminalrc
+    fi
 }
 
 where () {
-	grep -n $1 ./*.*
+    grep -n $1 ./*.*
 }
-# -------------MY_STUFF
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -145,7 +115,7 @@ fi
 
 # Workaround for 256 colors in xfce4-terminal, this fixes colors in tmux
 if [ "$COLORTERM" == "xfce4-terminal" ]; then
-	export TERM=xterm-256color
+    export TERM=xterm-256color
 fi
 
 # Enable vi mode in bash
