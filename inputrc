@@ -6,6 +6,8 @@ set match-hidden-files on
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set show-mode-in-prompt on
+set vi-cmd-mode-string "\1\e[7m\2(cmd)\1\e[0m\2"
+set vi-ins-mode-string "(ins)"
 set visible-stats on
 
 Control-l: clear-screen
