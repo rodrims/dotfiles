@@ -104,6 +104,15 @@ where () {
     grep -n $1 ./*.*
 }
 
+igrep () {
+    local pids=$(pgrep -i $1)
+    if [[ -z $pids ]]; then
+        echo "No processes matching '$1' found"
+    else
+        ps -o pid,ppid,user,tty,cmd -p $pids
+    fi
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -e "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
