@@ -7,6 +7,7 @@ alias fknbt='sudo modprobe -r btusb; sudo modprobe btusb'
 alias fknwifi='sudo service network-manager restart'
 alias glo='git log --oneline -n 5'
 alias has="dpkg --get-selections | grep -v deinstall | awk '{ print \$1 }' | grep -i"
+alias hidebar='xdo above -t $(xdo id -n root) $(xdo id -a bar)'
 alias l='ls -CF'
 alias la='ls -Al'
 alias linst='apt list --installed'
@@ -17,3 +18,4 @@ alias pd='pushd'
 alias pls='sudo $(fc -ln -1)'
 alias py='python3'
 alias todo='grep -n TODO: ./*'
+

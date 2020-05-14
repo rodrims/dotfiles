@@ -105,7 +105,7 @@ where () {
 }
 
 igrep () {
-    local pids=$(pgrep -i $1)
+    local pids=$(pgrep -fi $1)
     if [[ -z $pids ]]; then
         echo "No processes matching '$1' found"
     else

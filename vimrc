@@ -1,10 +1,10 @@
 set background=dark
-set cindent
-set cinkeys-=0#
-set cursorline
+set clipboard=unnamedplus " use system clipboard as default register
+set cursorline " highlight the current line
+set expandtab " make tab characters into spaces
 set hlsearch " hightlight search results when using /
+set ignorecase " search becomes case-insensitive
 set incsearch " highlight search results as you type
-set indentkeys-=0#
 set lazyredraw " makes scrolling less choppy
 set listchars=tab:»\ ,eol:¬,nbsp:·,trail:· " chars to represent invisibles
 set nobackup " stops creation of vim ~ backup files
@@ -13,15 +13,19 @@ set noundofile
 set nowritebackup
 set number " show line numbers
 set relativenumber "show relative line numbers (in combo with above line shows current line number and relative on other lines)
-set shiftwidth=8
+set shiftwidth=4
 set showbreak=\ \  " character to start a line that is wrapped
-set softtabstop=8
+set smartcase " if an upper-case character is in a search, the search will be case-sensitive ignoring 'ignorecase'
+set smartindent
+set softtabstop=4
 set splitbelow " sets default behaviour of :new
 set splitright " sets default behaviour of :vnew
-set tabstop=8
+set tabstop=4
 set timeoutlen=3000
 set ttimeoutlen=100
-set clipboard=unnamedplus " use system clipboard as default register
+
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
 
 syntax enable " sytax highlighting
 
