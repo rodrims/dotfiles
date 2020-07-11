@@ -58,11 +58,23 @@ _battery() {
     echo -e "$icon$level"
 }
 
+_cpu() {
+    local cpus=$(python3 -c "import psutil; print([str(i).rjust(5) for i in psutil.cpu_percent(0.1, True)])" | tr -d [],\')
+    local icon='\ue0c4'
+    echo -e "$icon $cpus"
+}
+
 _application() {
-    local app_icon='\ue1ae'
+    local icon='\ue1ae'
     local app=$(bspc query -T -n | jq -r .client.instanceName | tr '[:upper:]' '[:lower:]')
 
-    echo -e "$app_icon $app"
+    echo -e "$icon $app"
+}
+
+_wifi()  {
+    local network=$(iwconfig 2>/dev/null | grep wlp1s0 | awk -F'"' '{print $2}')
+    local icon='\ue048'
+    echo -e "$icon $network"
 }
 
 _desktop() {
@@ -70,7 +82,7 @@ _desktop() {
 
     all=$(bspc query -D --names | tr '\n' ' ')
     all=($all)
-    nicks=( ' \ue172 ' ' \ue169 ' ' \ue16a ' ' \ue16b ' ' \ue16c ' ' \ue16d ' ' \ue16e ' ' \ue16f ' ' \ue170 ' ' \ue171 ' )
+    nicks=(\ {9,0,{1..8}}\ )
     current=$(bspc query -D -d --names)
 
     for i in ${!all[@]}; do
@@ -97,9 +109,9 @@ _xoffset() {
 _output() {
     local left center right
     while :; do
-        left="%{l} $(_battery) $(_volume) $(_layout) $(_application) "
+        left="%{l} $(_battery) $(_volume) $(_wifi) $(_layout) $(_application) "
         center="%{c} $(_desktop) "
-        right="%{r} $(_clock) "
+        right="%{r} $(_cpu) $(_clock) "
         echo "$left$center$right"
         sleep 0.25
     done
@@ -111,7 +123,9 @@ BAR_WIDTH=$(( 2560 - $BAR_HEIGHT ))
 
 _dimensions=${BAR_WIDTH}x${BAR_HEIGHT}+$(_xoffset)+12
 
-_font=terminus-14
+_font='-windows-dina-medium-r-normal--10-80-96-96-c-70-microsoft-cp1252'
+
+_font_bold='-windows-dina-bold-r-normal--10-80-96-96-c-70-microsoft-cp1252'
 
 _font_icons='-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1'
 
@@ -121,4 +135,7 @@ _bg_color=\#002b36
 
 
 
-_output | lemonbar -g ${_dimensions} -f ${_font} -f ${_font_icons} -F ${_fg_color} -B ${_bg_color}
+sleep 2 && xdo above -t $(xdo id -n root) $(xdo id -a bar) &
+
+_output | lemonbar -g ${_dimensions} -f ${_font} -f ${_font_bold} -f ${_font_icons} -F ${_fg_color} -B ${_bg_color}
+

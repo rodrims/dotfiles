@@ -9,11 +9,11 @@ xrandr --output eDP-1 --auto --left-of DP-1 --mode 1400x900
 bspc monitor eDP-1 -g 1400x900+0+0
 bspc monitor eDP-1 -d IX X
 
-bspc monitor DP-1  -g 2560x1440+0+0
+bspc monitor DP-1  -g 2560x1440+1400+0
 bspc monitor DP-1  -d I II III IV V VI VII VIII
 
-# set wallpaper
-feh --bg-fill ~/Pictures/thelan_1920.jpg
+# set wallpaper (but don't create ~/.fehbg file)
+feh --nofehbg --bg-fill ~/Pictures/thelan_1920.jpg
 
 # set local fonts
 xset +fp ~/.local/share/fonts
@@ -37,8 +37,8 @@ bspc config gapless_monocle      false
 bspc config click_to_focus any
 
 # rules
-# TODO: don't think this does anything
-bspc rule -a google-chrome state=tiled
+bspc rule -a *:floatterm state=floating
+bspc rule -a zoom desktop=IX
 
 # launch hotkey manager
 sxhkd &

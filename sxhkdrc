@@ -6,9 +6,17 @@
 super + Return
 	urxvt
 
+# terminal emulator
+super + shift + Return
+	urxvt -name floatterm
+
 # program launcher
 super + @space
 	rofi -show run -m 1
+
+# window switcher
+super + shift + @space
+	rofi -show window -m 1
 
 # volume control (fn keys)
 XF86Audio{RaiseVolume,LowerVolume,Mute}
@@ -17,6 +25,16 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# toggle mute on zoom 
+#super + @z
+#    TMP=$(bspc query -D -d focused --names) && \
+#    bspc desktop -f IX && \
+#    sleep 0.01 && \
+#    xdotool key --clearmodifiers alt+a && \
+#    sleep 0.01 && \
+#    ( [ 'IX' == $TMP ] || bspc desktop -f last ) && \
+#    unset TMP
 
 #
 # bspwm hotkeys
