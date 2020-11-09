@@ -12,11 +12,11 @@ super + shift + Return
 
 # program launcher
 super + @space
-	rofi -show run -m 1
+	rofi -show run
 
 # window switcher
 super + shift + @space
-	rofi -show window -m 1
+	rofi -show window
 
 # volume control (fn keys)
 XF86Audio{RaiseVolume,LowerVolume,Mute}

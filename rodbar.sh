@@ -2,6 +2,10 @@
 
 _get_screen_width() {
     local width=$(xrandr | awk -F , '/^Screen/{print $2}' | awk '{print $2}')
+    local num_monitors=$(xrandr --listactivemonitors | awk '/^Monitors/{print $2}')
+    if [ $num_monitors -eq "2" ]; then
+        width=$((width - 1400))
+    fi
     echo $width
 }
 
@@ -80,13 +84,11 @@ _wifi()  {
 _desktop() {
     local all current nicks
 
-    all=$(bspc query -D --names | tr '\n' ' ')
-    all=($all)
-    nicks=(\ {9,0,{1..8}}\ )
+    nicks=($(for i in $(bspc query -D --names); do printf " $i "; done))
     current=$(bspc query -D -d --names)
 
-    for i in ${!all[@]}; do
-        if [ ${all[i]} == $current ]; then
+    for i in ${!nicks[@]}; do
+        if [ ${nicks[i]} == $current ]; then
             nicks[$i]="%{R}${nicks[i]}%{R}"
         fi
     done
@@ -103,6 +105,11 @@ _xoffset() {
     # local screen_width=$(_get_screen_width)
     # echo $(( (screen_width / 2) - (BAR_WIDTH / 2) ))
     local screen_offset=$(( 1400 + 12 ))
+
+    if [ "$(xrandr --listmonitors | awk '/^Monitors: [0-9]/{print $2}')" -eq "1" ];then
+        screen_offset=12
+    fi
+
     echo $screen_offset
 }
 
@@ -118,8 +125,7 @@ _output() {
 }
 
 BAR_HEIGHT=24
-# BAR_WIDTH=$(( $(_get_screen_width) - 24 )) 
-BAR_WIDTH=$(( 2560 - $BAR_HEIGHT )) 
+BAR_WIDTH=$(( $(_get_screen_width) - $BAR_HEIGHT )) 
 
 _dimensions=${BAR_WIDTH}x${BAR_HEIGHT}+$(_xoffset)+12
 
